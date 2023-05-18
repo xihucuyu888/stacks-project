@@ -43,3 +43,7 @@
   margin-bottom: 20px;
   display: block;
 }
+
+.signature {
+  word-break: break-all;
+}

@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const SignMessage = () => {
   const [message, setMessage] = useState('');
+  const [signature, setSignature] = useState(null);
   const { sign } = useConnect();
 
   const handleChange = (e) => {
@@ -14,6 +15,8 @@ const SignMessage = () => {
       sign({message,
         onFinish: (data) => {
             console.log("onFinish:", data);
+            // show data
+            setSignature(data.signature);
           },
           onCancel: () => {
             console.log("onCancel:", "Transaction was canceled");
@@ -37,6 +40,12 @@ const SignMessage = () => {
       <button className="Sign" onClick={() => signMessage()}>
         sign
       </button>
+      {signature && (
+        <div>
+          <p>签名结果：</p>
+          <pre className="signature">{signature}</pre>
+        </div>
+      )}
     </div>
   );
 };
